@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: wishlist_production
-  username: wishlist
-  password: <%= ENV["WISHLIST_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
