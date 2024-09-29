@@ -13,16 +13,20 @@ const Landing = () => {
             </div>
             <div className='bg-indigo-200 h-[70vh] flex flex-col items-center text-white text-center px-7'>
                 <h1 className='py-20 text-4xl'>Perfect for any special occasion!</h1>
-                <div className='flex'>
-                    <div className='w-96'>
-                        <h1 className='text-2xl'>Holiday Wishlist</h1>
+                <div className='flex min-w-[75%] text-2xl'>
+                    <div className='w-1/3'>
+                        <h1>Holiday Wishlist</h1>
                     </div>
-                    <div className='w-96'>
-                        <h1 className='text-2xl'>Wedding Registry</h1>
+                    <div className='w-1/3'>
+                        <h1>Wedding Registry</h1>
                     </div>
-                    <div className='w-96'>
-                        <h1 className='text-2xl'>Birthday List</h1>
+                    <div className='w-1/3'>
+                        <h1>Birthday List</h1>
                     </div>
+                </div>
+                <div className='flex-grow' />
+                <div className='mb-8'>
+                    <CustomButton redirect={'/login'}>Create a wishlist now!</CustomButton>
                 </div>
             </div>
         </div>
