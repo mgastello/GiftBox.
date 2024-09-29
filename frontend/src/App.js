@@ -9,7 +9,6 @@ function App() {
     <>
       <Switch>
         <Route exact path='/'>
-          {/* <h1>Hello from App</h1> */}
           <Navigation />
           <Landing />
         </Route>

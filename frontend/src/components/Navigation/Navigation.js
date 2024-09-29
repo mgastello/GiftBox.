@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from "react-router-dom"
 import * as sessionAction from '../../store/session'
@@ -6,6 +6,7 @@ import * as sessionAction from '../../store/session'
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
     const [isOpen, setIsOpen] = useState(false)
+    const dropdownRef = useRef(null)
     const dispatch = useDispatch()
 
     const logout = (e) => {
@@ -17,13 +18,20 @@ const Navigation = () => {
         setIsOpen(true)
     }
 
-    const handleMouseLeave = () => {
-        setIsOpen(false)
+    const handleMouseLeave = (e) => {
+        const relatedTarget = e.relatedTarget;
+        if (
+            dropdownRef.current &&
+            !dropdownRef.current.contains(relatedTarget) &&
+            relatedTarget !== document.querySelector('.account-button')
+        ) {
+            setIsOpen(false);
+        }
     }
 
     return (
         <div className='flex items-center bg-white sticky top-0 py-4 px-24'>
-            <h1 className="w-1/3 text-3xl">GiftBox.</h1>
+            <h1 className="w-1/3 text-3xl"><NavLink to='/'>GiftBox.</NavLink></h1>
             <div className="w-1/3 text-center text-lg">
                 <NavLink to='#' className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Home</NavLink>
                 <NavLink to='#' className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Wishlists</NavLink>
@@ -34,10 +42,12 @@ const Navigation = () => {
                     <NavLink to='signup' className="text-lg hover:text-indigo-400 hover:underline hover:underline-offset-8">Sign in / Sign up</NavLink>
                 </div>
             ) : (
-                <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="w-1/3 text-end hover:text-indigo-400 hover:underline hover:underline-offset-8">
-                    <h3 className='text-lg'>Account</h3>
+                <div className="w-1/3 flex justify-end">
+                    <h3 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='text-lg hover:text-indigo-400 hover:underline hover:underline-offset-8 account-button'>
+                        Account <i class="fa-regular fa-user"></i>
+                    </h3>
                     {isOpen && (
-                        <ul className='absolute right-[88px] top-12 bg-slate-50 rounded-md text-md text-black min-w-32'>
+                        <ul ref={dropdownRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='absolute right-[88px] top-12 bg-slate-50 rounded-md text-md text-black min-w-32'>
                             <li className='hover:text-indigo-400 border-b border-black'>
                                 <NavLink to='#' className="flex w-full px-4 pb-2 pt-4">My Lists</NavLink>
                             </li>
