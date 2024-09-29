@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   wrap_parameters include: User.attribute_names + ['password']
-  before_action :require_logged_in, only: [:create]
+  before_action :require_logged_in, except: [:create]
 
   def create
     @user = User.new(user_params)
