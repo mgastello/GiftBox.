@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from "react-router-dom"
 import * as sessionAction from '../../store/session'
+import present from '../../images/present.png'
 
 const Navigation = () => {
     const sessionUser = useSelector(state => state.session.user)
@@ -31,7 +32,14 @@ const Navigation = () => {
 
     return (
         <div className='flex items-center bg-white sticky top-0 py-4 px-24'>
-            <h1 className="w-1/3 text-3xl"><NavLink to='/'>GiftBox.</NavLink></h1>
+            <div className='w-1/3'>
+                <NavLink to='/' className='flex w-fit'>
+                    <img src={present} alt='present' className='w-10' />
+                    <h1 className='text-3xl'>
+                        GiftBox.
+                    </h1>
+                </NavLink>
+            </div>
             <div className="w-1/3 text-center text-lg">
                 <NavLink to='#' className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Home</NavLink>
                 <NavLink to='#' className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Wishlists</NavLink>
