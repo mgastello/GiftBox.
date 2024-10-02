@@ -44,87 +44,47 @@ const Signup = () => {
                 </h1>
             </NavLink>
             <div className='flex flex-col items-center p-6'>
-                <h1 className='text-2xl mb-4'>Welcome to GiftBox.</h1>
+                <h1 className='text-2xl mb-2'>Welcome to GiftBox.</h1>
+                <h3 className='text-xl mb-4'>Making gift giving fun and simple.</h3>
                 <h3 className='text-xl'>Get started by making a free account today.</h3>
             </div>
             <form onSubmit={handleSubmit} className='flex flex-col items-center'>
-                {!fNameError ? (
-                    <input
-                        type='text'
-                        value={firstName}
-                        placeholder='First Name'
-                        onChange={(e) => setFirstName(e.target.value)}
-                        className='p-3 text-md min-w-96 border-2 border-black rounded-md outline-none'
-                    />
-                ) : (
-                    <input
-                        type='text'
-                        value={firstName}
-                        placeholder='First Name'
-                        onChange={(e) => setFirstName(e.target.value)}
-                        className='p-3 text-md min-w-96 border-2 border-black rounded-md outline-none bg-amber-300 placeholder:text-red-500'
-                    />
-                )}
-                <h1 className='mt-1 text-red-500'>{fNameError}</h1>
-                {!lNameError ? (
-                    <input
-                        type='text'
-                        value={lastName}
-                        placeholder='Last Name'
-                        onChange={(e) => setLastName(e.target.value)}
-                        className='p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none'
-                    />
-                ) : (
-                    <input
-                        type='text'
-                        value={lastName}
-                        placeholder='Last Name'
-                        onChange={(e) => setLastName(e.target.value)}
-                        className='p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none bg-amber-300 placeholder:text-red-500'
-                    />
-                )}
-                <h1 className='mt-1 text-red-500'>{lNameError}</h1>
-                {!emailError ? (
-                    <input
-                        type='text'
-                        value={email}
-                        placeholder='Email'
-                        onChange={(e) => setEmail(e.target.value)}
-                        className='p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none'
-                    />
-                ) : (
-                    <input
-                        type='text'
-                        value={email}
-                        placeholder='Email'
-                        onChange={(e) => setEmail(e.target.value)}
-                        className='p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none bg-amber-300 placeholder:text-red-500'
-                    />
-
-                )}
+                <input
+                    type='text'
+                    value={firstName}
+                    placeholder='First Name'
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className={`p-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${fNameError ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
+                />
+                {fNameError ? (<h1 className='mt-1 text-red-500'>Please enter your first name.</h1>) : (null) }
+                <input
+                    type='text'
+                    value={lastName}
+                    placeholder='Last Name'
+                    onChange={(e) => setLastName(e.target.value)}
+                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${lNameError ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
+                />
+                {lNameError ? (<h1 className='mt-1 text-red-500'>Please enter your last name.</h1>) : (null) }
+                <input
+                    type='text'
+                    value={email}
+                    placeholder='Email'
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${emailError ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
+                />
                 {emailError?.includes("taken") ? (
-                    <h1 className='mt-1 text-red-500'>{emailError}. <NavLink to='/login' className='text-blue-500 hover:text-blue-600 underline'>Login!</NavLink></h1>
+                    <h1 className='mt-1 text-red-500'>An account with this email already exists. <NavLink to='/login' className='text-blue-500 hover:text-blue-600 underline'>Login!</NavLink></h1>
                 ) : (
                     <h1 className='mt-1 text-red-500'>{emailError}</h1>
                 )}
-                {!passwordError ? (
-                    <input
-                        type='password'
-                        value={password}
-                        placeholder='Password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        className='p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none'
-                    />
-                ) : (
-                    <input
-                        type='password'
-                        value={password}
-                        placeholder='Password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        className='p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none bg-amber-300 placeholder:text-red-500'
-                    />
-                )}
-                <h1 className='mt-1 text-red-500'>{passwordError}</h1>
+                <input
+                    type='password'
+                    value={password}
+                    placeholder='Password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${passwordError ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
+                />
+                <h1 className='mt-1 text-red-500'>{passwordError}.</h1>
                 <NavLink to='/login' className='m-4 underline hover:text-blue-600'>Already have an account? Login!</NavLink>
                 <button type='submit' className="px-8 py-2 bg-sky-400 rounded-xl text-neutral-100 text-lg hover:bg-sky-500">Create Account</button>
             </form>
