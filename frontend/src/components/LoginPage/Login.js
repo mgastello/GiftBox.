@@ -12,6 +12,7 @@ const Signup = () => {
     const [errors, setErrors] = useState([])
     const emailError = errors.find(error => error.includes("Email"))
     const passwordError = errors.find(error => error.includes("Password"))
+    console.log(errors)
 
     if (sessionUser) return <Redirect to='/' />
 
@@ -50,15 +51,16 @@ const Signup = () => {
                     value={email}
                     placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${emailError ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
+                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${errors ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
                 />
                 <input
                     type='password'
                     value={password}
                     placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${passwordError ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
+                    className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${errors ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
                 />
+                {errors ? (<h1 className='mt-1 text-red-500'>{errors}</h1>) : (null)}
                 <NavLink to='/signup' className='m-4 underline hover:text-blue-600'>Don't have an account yet? Signup!</NavLink>
                 <button type='submit' className="px-8 py-2 bg-sky-400 rounded-xl text-neutral-100 text-lg hover:bg-sky-500">Login</button>
             </form>
