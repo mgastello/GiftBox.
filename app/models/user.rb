@@ -56,4 +56,21 @@ class User < ApplicationRecord
   def ensure_session_token
     self.session_token ||= generate_unique_session_token
   end
+
+  def custom_password_validation
+    valid_patterns = [
+        /^(?=.*[a-z])(?=.*[A-Z])(?!.*[<>\s]).{8,20}$/,
+        /^(?=.*[a-z])(?=.*\d)(?!.*[<>\s]).{8,20}$/,
+        /^(?=.*[a-z])(?=.*[^<>\w\s])(?!.*[<>\s]).{8,20}$/, 
+        /^(?=.*[A-Z])(?=.*[^<>\w\s])(?!.*[<>\s]).{8,20}$/, 
+        /^(?=.*[A-Z])(?=.*\d)(?!.*[<>\s]).{8,20}$/, 
+        /^(?=.*\d)(?=.*[^<>\w\s])(?!.*[<>\s]).{8,20}$/
+    ]
+
+    valid_password = valid_patterns.any? { |pattern| password.match?(pattern) }
+
+    unless valid_password
+        errors.add(:password, "must contain: 8-20 characters. And 2 of the following: Lowercase letters, Uppercase letters, Numbers, Special characters, except < >")
+    end
+  end
 end
