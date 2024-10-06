@@ -22,6 +22,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :email, :session_token, presence: true
   validates :email, :session_token, uniqueness: true
   validates :email, length: { in: 3..255 }, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validate :custom_password_validation, on: :create, if: :password
   validates :password, length: { in: 8..20 }, allow_nil: true
 
   before_validation :ensure_session_token
