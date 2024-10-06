@@ -1,4 +1,4 @@
-export const isLoggedIn = (redirect, sessionUser) => {
+export const loggedInRedirect = (redirect, sessionUser) => {
 
     if (sessionUser) {
         return `/${redirect}`

@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from "react-router-dom"
 import * as sessionAction from '../../store/session'
-import { isLoggedIn } from '../../utils/isLoggedIn'
+import { loggedInRedirect } from '../../utils/loggedInRedirect'
 import present from '../../images/present.png'
 
 const Navigation = () => {
@@ -42,9 +42,9 @@ const Navigation = () => {
                 </NavLink>
             </div>
             <div className="w-1/3 text-center text-lg">
-                <NavLink to={isLoggedIn('', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Home</NavLink>
-                <NavLink to={isLoggedIn('wishlists', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Wishlists</NavLink>
-                <NavLink to={isLoggedIn('friends', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Friends</NavLink>
+                <NavLink to={loggedInRedirect('', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Home</NavLink>
+                <NavLink to={loggedInRedirect('wishlists', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Wishlists</NavLink>
+                <NavLink to={loggedInRedirect('friends', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Friends</NavLink>
             </div>
             {!sessionUser ? (
                 <div className='flex justify-end w-1/3'>
