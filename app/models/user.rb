@@ -25,6 +25,29 @@ class User < ApplicationRecord
   validate :custom_password_validation, on: :create, if: :password
   validates :password, length: { in: 8..20 }, allow_nil: true
 
+  has_many :follower_relationships,
+    foreign_key: followee_id,
+    class_name: :Follow,
+    inverse_of: :followee,
+    dependent: :destroy
+    
+    has_many :followers,
+    through: :follower_relationships,
+    source: :follower
+    
+    
+    has_many :followee_relationships,
+    foreign_key: follower_id,
+    class_name: :Follow,
+    inverse_of: :follower,
+    dependent: :destroy
+
+  has_many :followees,
+    through: :followee_relationships,
+    source: :followee
+
+  
+
   before_validation :ensure_session_token
 
   def self.find_by_credentials(email, password)
