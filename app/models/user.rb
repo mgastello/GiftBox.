@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :password, length: { in: 8..20 }, allow_nil: true
 
   has_many :follower_relationships,
-    foreign_key: followee_id,
+    foreign_key: :followee_id,
     class_name: :Follow,
     inverse_of: :followee,
     dependent: :destroy
@@ -37,7 +37,7 @@ class User < ApplicationRecord
     
     
     has_many :followee_relationships,
-    foreign_key: follower_id,
+    foreign_key: :follower_id,
     class_name: :Follow,
     inverse_of: :follower,
     dependent: :destroy
