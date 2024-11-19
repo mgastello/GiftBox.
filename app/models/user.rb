@@ -25,18 +25,20 @@ class User < ApplicationRecord
   validate :custom_password_validation, on: :create, if: :password
   validates :password, length: { in: 8..20 }, allow_nil: true
 
-  has_many :follower_relationships,
+  # associations where the user is being followed
+
+  has_many :follows,
     foreign_key: :followee_id,
-    class_name: :Follow,
     inverse_of: :followee,
     dependent: :destroy
+
+  # users who are following this user
     
-    has_many :followers,
-    through: :follower_relationships,
+  has_many :followers,
+    through: :follows,
     source: :follower
     
-    
-    has_many :followee_relationships,
+  has_many :followee_relationships,
     foreign_key: :follower_id,
     class_name: :Follow,
     inverse_of: :follower,
@@ -46,7 +48,7 @@ class User < ApplicationRecord
     through: :followee_relationships,
     source: :followee
 
-  
+  has_many :wishlists
 
   before_validation :ensure_session_token
 

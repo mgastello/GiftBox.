@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_07_024541) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_18_205731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,27 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_07_024541) do
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
+  create_table "wishlist_items", force: :cascade do |t|
+    t.bigint "wishlist_id"
+    t.string "title"
+    t.text "description"
+    t.string "image_url"
+    t.integer "status", default: 0
+    t.text "product_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wishlist_id"], name: "index_wishlist_items_on_wishlist_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "follows", "users", column: "followee_id"
   add_foreign_key "follows", "users", column: "follower_id"
+  add_foreign_key "wishlists", "users"
 end

@@ -222,6 +222,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   jbuilder
+  nokogiri
   pg (~> 1.1)
   pry-rails
   puma (~> 6.0)
