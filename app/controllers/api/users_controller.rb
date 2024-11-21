@@ -1,5 +1,4 @@
 class Api::UsersController < ApplicationController
-  wrap_parameters include: User.attribute_names + ['password']
   before_action :require_logged_in, except: [:create]
 
   def create
@@ -10,6 +9,11 @@ class Api::UsersController < ApplicationController
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+    render :show
   end
 
   private

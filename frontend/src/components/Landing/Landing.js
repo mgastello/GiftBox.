@@ -12,7 +12,7 @@ const Landing = () => {
                 <h3 className="text-2xl">Add items to your wishlists and share with friends!</h3>
                 <div className='flex-grow' />
                 <div className='mb-8'>
-                    <CustomButton redirect={loggedInRedirect('wishlists', sessionUser)}>Get Started</CustomButton>
+                    <CustomButton redirect={loggedInRedirect('mywishlists', sessionUser)}>Get Started</CustomButton>
                 </div>
             </div>
             <div className='bg-indigo-200 h-[70vh] flex flex-col items-center text-white text-center px-7'>
@@ -30,7 +30,7 @@ const Landing = () => {
                 </div>
                 <div className='flex-grow' />
                 <div className='mb-8'>
-                    <CustomButton redirect={loggedInRedirect('wishlists', sessionUser)}>Create a wishlist now!</CustomButton>
+                    <CustomButton redirect={loggedInRedirect('mywishlists', sessionUser)}>Create a wishlist now!</CustomButton>
                 </div>
             </div>
         </div>

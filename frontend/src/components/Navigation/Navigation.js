@@ -43,7 +43,7 @@ const Navigation = () => {
             </div>
             <div className="w-1/3 text-center text-lg">
                 <NavLink to={loggedInRedirect('', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Home</NavLink>
-                <NavLink to={loggedInRedirect('wishlists', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Wishlists</NavLink>
+                <NavLink to={loggedInRedirect('mywishlists', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Wishlists</NavLink>
                 <NavLink to={loggedInRedirect('friends', sessionUser)} className="m-4 hover:text-indigo-400 hover:underline hover:underline-offset-8">Friends</NavLink>
             </div>
             {!sessionUser ? (
@@ -53,12 +53,12 @@ const Navigation = () => {
             ) : (
                 <div className="w-1/3 flex justify-end">
                     <h3 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='text-lg hover:text-indigo-400 hover:underline hover:underline-offset-8 account-button'>
-                        Account <i class="fa-regular fa-user"></i>
+                        Hello, {sessionUser.firstName} <i class="fa-regular fa-user"></i>
                     </h3>
                     {isOpen && (
                         <ul ref={dropdownRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className='absolute right-[88px] top-12 bg-slate-50 rounded-md text-md text-black min-w-32'>
                             <li className='hover:text-indigo-400 border-b border-black'>
-                                <NavLink to='#' className="flex w-full px-4 pb-2 pt-4">My Lists</NavLink>
+                                <NavLink to='/mywishlists' className="flex w-full px-4 pb-2 pt-4">My Lists</NavLink>
                             </li>
                             <li className='hover:text-indigo-400'>
                                 <NavLink to='#' className="flex w-full px-4 py-2">Settings</NavLink>

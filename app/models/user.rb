@@ -27,7 +27,8 @@ class User < ApplicationRecord
 
   # associations where the user is being followed
 
-  has_many :follows,
+  has_many :follower_relationships,
+    class_name: :Follow,
     foreign_key: :followee_id,
     inverse_of: :followee,
     dependent: :destroy
@@ -35,7 +36,7 @@ class User < ApplicationRecord
   # users who are following this user
     
   has_many :followers,
-    through: :follows,
+    through: :follower_relationships,
     source: :follower
     
   has_many :followee_relationships,
