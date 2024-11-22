@@ -25,8 +25,8 @@ export const fetchWishlists = (userId) => async dispatch => {
     return dispatch(receiveWishlists(data));
 }
 
-export const fetchWishlist = (wishlistId) => async dispatch => {
-    const res = await csrfFetch(`/api/wishlists/${wishlistId}`);
+export const fetchWishlist = (userId, wishlistId) => async dispatch => {
+    const res = await csrfFetch(`/api/users/${userId}/wishlists/${wishlistId}`);
     const data = await res.json();
     return dispatch(receiveWishlist(data.wishlist));
 }

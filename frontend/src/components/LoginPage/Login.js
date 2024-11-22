@@ -45,14 +45,18 @@ const Signup = () => {
             <form onSubmit={handleSubmit} className='flex flex-col items-center'>
                 <input
                     type='text'
+                    id='email'
                     value={email}
+                    autoComplete='off'
                     placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
                     className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${errors.length > 0 ? 'bg-amber-300 placeholder:text-red-500' : ''}`}
-                />
+                    />
                 <input
                     type='password'
+                    id='password'
                     value={password}
+                    autoComplete='off'
                     placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)}
                     className={`p-3 mt-3 text-md min-w-96 border-2 border-black rounded-md outline-none ${errors.length > 0 ? 'bg-amber-300 placeholder:text-red-500' : ''}`}

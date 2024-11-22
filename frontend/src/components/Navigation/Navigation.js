@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 import * as sessionAction from '../../store/session'
 import { loggedInRedirect } from '../../utils/loggedInRedirect'
 import present from '../../images/present.png'
@@ -10,10 +10,12 @@ const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef(null)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const logout = (e) => {
         e.preventDefault()
         dispatch(sessionAction.logout())
+        history.push('/')
     }
 
     const handleMouseEnter = () => {

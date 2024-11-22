@@ -4,6 +4,7 @@ import Login from "./components/LoginPage/Login";
 import Signup from "./components/SignupPage/Signup";
 import Navigation from "./components/Navigation/Navigation";
 import MyWishlist from "./components/Wishlist/MyWishlist";
+import WishlistItemsIndex from "./components/WishlistItems/WishlistItemsIndex";
 
 function App() {
   return (
@@ -19,9 +20,13 @@ function App() {
         <Route path='/signup'>
           <Signup />
         </Route>
-        <Route path='/mywishlists'>
+        <Route exact path='/mywishlists'>
           <Navigation />
           <MyWishlist />
+        </Route>
+        <Route path='/mywishlists/:wishlistId'>
+          <Navigation />
+          <WishlistItemsIndex />
         </Route>
       </Switch>
     </>

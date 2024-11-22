@@ -8,7 +8,7 @@ class Api::WishlistsController < ApplicationController
   end
 
   def show
-    @wishlist = Wishlist.find(params[:id])
+    @wishlist = User.find(params[:user_id]).wishlists.find(params[:id])
     render :show
   end
 

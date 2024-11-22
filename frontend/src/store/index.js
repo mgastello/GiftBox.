@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { thunk } from 'redux-thunk'
 import sessionReducer from './session';
 import wishlistReducer from './wishlist';
+import wishlistItemsReducer from './wishlistItem';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    wishlists: wishlistReducer
+    wishlists: wishlistReducer,
+    wishlistItems: wishlistItemsReducer
 })
 
 let enhancer

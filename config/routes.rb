@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # root "posts#index"
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show] do
-      resources :wishlists, only: [:index, :show]
+      resources :wishlists, only: [:index, :show] do
+        resources :wishlist_items, only: [:index, :show]
+      end
       resources :follows, only: [:index, :create, :destroy]
     end
     resources :wishlists, only: [:create, :update, :destroy]
